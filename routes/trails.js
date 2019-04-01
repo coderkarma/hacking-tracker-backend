@@ -16,7 +16,6 @@ router.get('/geolocation/:city', function (req, res, next) {
             let lat = location.location.lat;
             let lng = location.location.lng;
 
-            // console.log('handle submit', JSON.stringify(location));
             axios.get(
                 `https://www.hikingproject.com/data/get-trails?lat=${lat}&lon=${lng}&maxDistance=10&key=200439239-c0f23da15aa93f591bfc0baf98024eeb`
             ).then(response => {

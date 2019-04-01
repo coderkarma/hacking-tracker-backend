@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const UserSchema = mongoose.Schema({
     username: String,
+    trails: [],
     email: {
         type: String,
         required: true,
@@ -13,13 +14,16 @@ const UserSchema = mongoose.Schema({
         required: true,
         select: false
     },
-    dateJoined: Date,
-    TodoList: [{
-        id: Trail_id,
-        name: Trail_name,
-        location: Trail_id
-    }]
+    dateJoined: Date
 });
+
+
+UserSchema.set('toJSON', {
+    transform: function (doc, ret, opt) {
+        delete ret['password']
+        return ret
+    }
+})
 
 
 module.exports = mongoose.model("User", UserSchema);
