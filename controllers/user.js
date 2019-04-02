@@ -34,8 +34,13 @@ module.exports = {
                                 email: req.body.email,
                                 password: hash
                             }, (err, newUser) => {
+                                if (err) {
+                                    return res.status(500).json({
+                                        err
+                                    })
+                                }
+
                                 console.log('here is the result', newUser)
-                                // if(err){ return res.status(500).json({err})}
                                 // we send our new data back to user or whatever you want to do.
                                 let user = {
                                     email: newUser.email,
@@ -54,7 +59,8 @@ module.exports = {
                                             user,
                                             signedJwt
                                         })
-                                    });
+                                    }
+                                );
                                 // send success back to user, along with a token.
                             })
                         }
