@@ -3,9 +3,10 @@ const bodyParser = require("body-parser");
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/user');
- const trailRouter = require('./routes/trails');
+const trailRouter = require('./routes/trails');
 const cors = require('cors')
 const app = express();
+const jwt = require('jsonwebtoken');
 
 app.use(cors())
 // 1app.use(express.static(__dirname + '.'));
@@ -19,6 +20,27 @@ app.use(express.urlencoded({
 }));
 
 
+
+
+app.use((req, res, next) => {
+  // check the header of the req
+  if (req.headers['x-token'] === undefined) {
+    res.locals.userData = null;
+    next();
+  } else {
+    jwt.verify(req.headers['x-token'], 'waffles', function (err, decoded) {
+      if (err) {
+        res.locals.userData = null;
+        next();
+      } else {
+        res.locals.userData = decoded
+        next();
+      }
+
+    });
+  }
+
+});
 
 
 app.use('/', indexRouter);

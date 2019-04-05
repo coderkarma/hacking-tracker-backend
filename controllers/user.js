@@ -32,7 +32,10 @@ module.exports = {
                             // we are creating a User object with their email address and OUR hashed password
                             db.User.create({
                                 email: req.body.email,
-                                password: hash
+                                password: hash,
+                                username: req.body.username,
+                                dateJoined: Date()
+
                             }, (err, newUser) => {
                                 if (err) {
                                     return res.status(500).json({
@@ -44,7 +47,9 @@ module.exports = {
                                 // we send our new data back to user or whatever you want to do.
                                 let user = {
                                     email: newUser.email,
-                                    _id: newUser._id
+                                    _id: newUser._id,
+                                    dateJoined: newUser.dataJoined,
+                                    username: newUser.username
                                 }
 
                                 jwt.sign(
@@ -75,7 +80,10 @@ module.exports = {
             })
     },
     login: (req, res) => {
+
+        console.log(res.locals.userData);
         console.log("LOGIN CALLED");
+
         // find the user in our user db
         console.log("body", req.body)
         db.User.find({
@@ -157,6 +165,15 @@ module.exports = {
         }
 
     },
+    // !! index 
+    index: (req, res) => {
+        console.log("getting all users")
+        db.User.find({}, (err, allUsers) => {
+            if (err) return err;
+            res.json(allUsers)
+        })
+    },
+
     delete: (req, res) => {
         console.log("hitting delete");
         db.User.deleteOne({

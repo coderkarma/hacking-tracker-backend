@@ -6,6 +6,7 @@ const axios = require('axios')
 /* GET users listing. */
 router.get('/geolocation/:city', function (req, res, next) {
     let address = req.params.city;
+    console.log(address)
     let url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}&key=AIzaSyAVaHMTuOSJrUzFISOWTUtJMiSXLh6BuwM`;
     console.log(url);
 

@@ -31,6 +31,7 @@ router.get('/', function (req, res, next) {
   res.send('respond with a resource');
 });
 
+router.get('/user', controllers.user.index)
 router.get('/', controllers.user.show)
 router.delete('/delete', controllers.user.delete)
 
