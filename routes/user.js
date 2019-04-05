@@ -33,6 +33,13 @@ router.get('/', function (req, res, next) {
 
 router.get('/user', controllers.user.index)
 router.get('/', controllers.user.show)
+
+// Get one user
+// FIXME: not able to do user by id 
+router.get("/:id", controllers.user.get_user);
+// Update a user
+// FIXME: User is not able to update by id
+router.put("/:id", controllers.user.update);
 router.delete('/delete', controllers.user.delete)
 
 module.exports = router;

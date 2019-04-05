@@ -6,7 +6,7 @@ router.get('/', function (req, res, next) {
   res.send("This is just a Home route")
 });
 
-router.get('/testing', function (req, res, next) {
+router.get('/testing', function (req, res) {
 
   db.User.find({}, (err, allUsers) => {
     if (err) return err;
@@ -15,6 +15,21 @@ router.get('/testing', function (req, res, next) {
   // res.send("This is testing route")
 });
 
+router.get('/:id',
+  // TODO - check this function 
+  (req, res) => {
+    let userId = req.params.id;
+    db.User.findOne({
+      _id: userId
+    }, (err, foundUser) => {
+      if (err) {
+        console.log(err);
+      }
+      res.json(foundUser);
+    });
+  },
+
+)
 
 
 module.exports = router;

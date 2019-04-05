@@ -163,15 +163,47 @@ module.exports = {
         } else {
             res.json('No user Id provided')
         }
-
     },
-    // !! index 
+    // !! Get all the users
     index: (req, res) => {
         console.log("getting all users")
         db.User.find({}, (err, allUsers) => {
             if (err) return err;
             res.json(allUsers)
         })
+    },
+
+    // !! Get one user by id
+    // TODO - check this function 
+    get_user: (req, res) => {
+        let userId = req.params.id;
+        db.User.findOne({
+            _id: userId
+        }, (err, foundUser) => {
+            if (err) {
+                console.log(err);
+            }
+            res.json(foundUser);
+        });
+    },
+
+    // !! Update the user by id
+    // TODO - recheck this function
+    update: (req, res) => {
+        let userId = req.params.id;
+        db.User.findOneAndUpdate({
+                _id: userId
+            },
+            req.body, {
+                new: true
+            },
+            (err, updatedUser) => {
+                if (err) {
+                    console.log(err);
+                }
+                res.json(updatedUser);
+            }
+        );
     },
 
     delete: (req, res) => {
