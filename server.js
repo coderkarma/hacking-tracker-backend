@@ -23,16 +23,19 @@ app.use(express.urlencoded({
 
 
 app.use((req, res, next) => {
-  // check the header of the req
+  // checkc the header of the req
+  console.log('inside the check')
   if (req.headers['x-token'] === undefined) {
     res.locals.userData = null;
     next();
   } else {
     jwt.verify(req.headers['x-token'], 'waffles', function (err, decoded) {
       if (err) {
+        console.log('errors')
         res.locals.userData = null;
         next();
       } else {
+        console.log(decoded)
         res.locals.userData = decoded
         next();
       }

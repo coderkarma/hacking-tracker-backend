@@ -30,10 +30,12 @@ module.exports = {
                             // we now have a successful hashed password
                         } else {
                             // we are creating a User object with their email address and OUR hashed password
+                            console.log('xxxxxxxxxxxxxx')
+                            console.log(req.body.displayname)
                             db.User.create({
                                 email: req.body.email,
                                 password: hash,
-                                username: req.body.username,
+                                displayname: req.body.displayname,
                                 dateJoined: Date()
 
                             }, (err, newUser) => {
@@ -49,7 +51,7 @@ module.exports = {
                                     email: newUser.email,
                                     _id: newUser._id,
                                     dateJoined: newUser.dataJoined,
-                                    username: newUser.username
+                                    displayname: newUser.displayname
                                 }
 
                                 jwt.sign(
@@ -190,7 +192,9 @@ module.exports = {
     // !! Update the user by id
     // TODO - recheck this function
     update: (req, res) => {
-        let userId = req.params.id;
+        // if(res.locals.userData === )
+        let userId = res.locals.userData._id;
+
         db.User.findOneAndUpdate({
                 _id: userId
             },
