@@ -30,7 +30,7 @@ module.exports = {
                             // we now have a successful hashed password
                         } else {
                             // we are creating a User object with their email address and OUR hashed password
-                            console.log('xxxxxxxxxxxxxx')
+                            console.log('**************')
                             console.log(req.body.displayname)
                             db.User.create({
                                 email: req.body.email,
@@ -157,9 +157,10 @@ module.exports = {
             })
     },
     show: (req, res) => {
-        console.log('trigger Show', req.userId)
-        if (req.userId) {
-            db.User.findById(req.userId, (err, foundUser) => {
+        let userId = req.params.id;
+        console.log('trigger Show', userId)
+        if (userId) {
+            db.User.findById(userId, (err, foundUser) => {
                 res.json(foundUser)
             })
         } else {
@@ -175,19 +176,19 @@ module.exports = {
         })
     },
 
-    // !! Get one user by id
-    // TODO - check this function 
-    get_user: (req, res) => {
-        let userId = req.params.id;
-        db.User.findOne({
-            _id: userId
-        }, (err, foundUser) => {
-            if (err) {
-                console.log(err);
-            }
-            res.json(foundUser);
-        });
-    },
+    // // !! Get one user by id
+    // // TODO - check this function 
+    // get_user: (req, res) => {
+    //     let userId = req.params.id;
+    //     db.User.findOne({
+    //         _id: userId
+    //     }, (err, foundUser) => {
+    //         if (err) {
+    //             console.log(err);
+    //         }
+    //         res.json(foundUser);
+    //     });
+    // },
 
     // !! Update the user by id
     // TODO - recheck this function

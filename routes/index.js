@@ -6,8 +6,7 @@ router.get('/', function (req, res, next) {
   res.send("This is just a Home route")
 });
 
-router.get('/testing', function (req, res) {
-
+router.get('/users', function (req, res, next) {
   db.User.find({}, (err, allUsers) => {
     if (err) return err;
     res.json(allUsers)

@@ -27,16 +27,16 @@ router.post('/login', controllers.user.login)
 // })
 
 /* GET users listing. */
-router.get('/', function (req, res, next) {
-  res.send('respond with a resource');
-});
+// router.get('/', function (req, res, next) {
+//   res.send('respond with a resource');
+// });
 
-router.get('/users', controllers.user.index)
-router.get('/', controllers.user.show)
+router.get('/', controllers.user.index)
+// router.get('/', controllers.user.show)
 
 // Get one user
 // FIXME: not able to do user by id 
-router.get("/:id", controllers.user.get_user);
+router.get("/:id", controllers.user.show);
 // Update a user
 // FIXME: User is not able to update by id
 router.put("/update", controllers.user.update);
