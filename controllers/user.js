@@ -176,25 +176,12 @@ module.exports = {
         })
     },
 
-    // // !! Get one user by id
-    // // TODO - check this function 
-    // get_user: (req, res) => {
-    //     let userId = req.params.id;
-    //     db.User.findOne({
-    //         _id: userId
-    //     }, (err, foundUser) => {
-    //         if (err) {
-    //             console.log(err);
-    //         }
-    //         res.json(foundUser);
-    //     });
-    // },
-
     // !! Update the user by id
     // TODO - recheck this function
     update: (req, res) => {
         // if(res.locals.userData === )
-        let userId = res.locals.userData._id;
+        // let userId = res.locals.userData._id;
+        let userId = req.params.id;
 
         db.User.findOneAndUpdate({
                 _id: userId
@@ -212,9 +199,11 @@ module.exports = {
     },
 
     delete: (req, res) => {
+
         console.log("hitting delete");
+        let userId = req.params.id;
         db.User.deleteOne({
-            _id: req.params.userId
+            _id: userId
         }, (err, result) => {
             if (err) {
                 return res.status(500).json({

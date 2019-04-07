@@ -39,7 +39,7 @@ router.get('/', controllers.user.index)
 router.get("/:id", controllers.user.show);
 // Update a user
 // FIXME: User is not able to update by id
-router.put("/update", controllers.user.update);
-router.delete('/delete', controllers.user.delete)
+router.put("/:id", controllers.user.update);
+router.delete('/:id', controllers.user.delete)
 
 module.exports = router;
