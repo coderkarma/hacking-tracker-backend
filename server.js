@@ -21,9 +21,9 @@ app.use(express.urlencoded({
 
 
 
-
 app.use((req, res, next) => {
-  // checkc the header of the req
+  console.log('request header or x token', req.headers['x-token'])
+  // check the header of the req
   console.log('inside the check')
   if (req.headers['x-token'] === undefined) {
     res.locals.userData = null;

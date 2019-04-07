@@ -1,6 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const axios = require('axios')
+const axios = require('axios');
+
+
+router.post('/add/:id', (req, res) => {
+    //!!  Get the user from the jwt 
+    //! Get the id of trail from req.params
+    //! push the id of trail in to user's trails array
+    res.json({})
+})
+
+router.delete('/remove/:id', (req, res) => {
+    //!!  Get the user from the jwt 
+    //! Get the id of trail from req.params
+    //! remove the trial_id from user's trails array
+    res.json({})
+})
 
 
 /* GET users listing. */

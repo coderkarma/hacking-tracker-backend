@@ -31,7 +31,7 @@ module.exports = {
                         } else {
                             // we are creating a User object with their email address and OUR hashed password
                             console.log('**************')
-                            console.log(req.body.displayname)
+                            // console.log(req.body.displayname)
                             db.User.create({
                                 email: req.body.email,
                                 password: hash,
@@ -83,7 +83,7 @@ module.exports = {
     },
     login: (req, res) => {
 
-        console.log(res.locals.userData);
+        // console.log(res.locals.userData);
         console.log("LOGIN CALLED");
 
         // find the user in our user db
