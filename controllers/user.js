@@ -124,6 +124,7 @@ module.exports = {
                             email: users[0].email,
                             _id: users[0]._id
                         }
+
                         jwt.sign(
                             user,
                             "waffles", {
@@ -131,9 +132,10 @@ module.exports = {
                                 expiresIn: "1h"
                             },
                             (err, signedJwt) => {
+                                console
                                 res.status(200).json({
                                     message: 'Auth successful',
-                                    user,
+                                    user: users[0],
                                     signedJwt
                                 })
                             });
@@ -214,5 +216,25 @@ module.exports = {
                 result
             })
         })
-    }
+    },
+    profile: (req, res) => {
+        console.log('HEREE')
+        if (!res.locals.userData) {
+            res.status(401).json({
+                error: 'Not logged in'
+            })
+            return
+        }
+        console.log(res.locals);
+        db.User.findById(res.locals.userData._id)
+            .then((user) => {
+                console.log(user)
+                res.json(user)
+            }).catch(() => {
+                res.status(401).json({
+                    error: 'Not logged in'
+                })
+            })
+
+    },
 }

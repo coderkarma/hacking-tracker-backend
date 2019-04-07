@@ -35,6 +35,8 @@ router.post('/login', controllers.user.login)
 router.get('/', controllers.user.index)
 // router.get('/', controllers.user.show)
 
+router.get('/profile', controllers.user.profile)
+
 // Get one user
 router.get("/:id", controllers.user.show);
 
@@ -43,5 +45,8 @@ router.put("/:id", controllers.user.update);
 
 // delete a user 
 router.delete('/:id', controllers.user.delete)
+
+
+
 
 module.exports = router;

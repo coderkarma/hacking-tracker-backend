@@ -31,11 +31,11 @@ app.use((req, res, next) => {
   } else {
     jwt.verify(req.headers['x-token'], 'waffles', function (err, decoded) {
       if (err) {
-        console.log('errors')
+        console.log('jwt verify errors')
         res.locals.userData = null;
         next();
       } else {
-        console.log(decoded)
+        console.log('dedecode here', decoded)
         res.locals.userData = decoded
         next();
       }

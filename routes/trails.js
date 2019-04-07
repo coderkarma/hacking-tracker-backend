@@ -1,21 +1,68 @@
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
+db = require('../models'),
 
 
-router.post('/add/:id', (req, res) => {
-    //!!  Get the user from the jwt 
-    //! Get the id of trail from req.params
-    //! push the id of trail in to user's trails array
-    res.json({})
-})
+    router.post('/add', (req, res) => {
+        const user = res.locals.userData;
+        if (!user) {
+            res.status(401).json({});
+            return
+        }
+        console.log(req.body)
+        db.User.findById(res.locals.userData._id)
+            .then((user) => {
+                const trails = user.trails || [];
+                trails.push(req.body.trail)
+                console.log(trails)
+                db.User.findOneAndUpdate({
+                        _id: user._id
+                    }, {
+                        trails
+                    },
+                    (err, updatedUser) => {
+                        if (err) {
+                            console.log(err);
+                        }
+                        res.json(updatedUser);
+                    }
+                );
+            })
+
+    })
 
 router.delete('/remove/:id', (req, res) => {
-    //!!  Get the user from the jwt 
-    //! Get the id of trail from req.params
-    //! remove the trial_id from user's trails array
-    res.json({})
+    const user = res.locals.userData;
+    if (!user) {
+        res.status(401).json({});
+        return
+    }
+    console.log(req.body)
+    db.User.findById(res.locals.userData._id)
+        .then((user) => {
+            let trails = user.trails || [];
+            trails = trails.filter((t) => {
+                if (!t) {
+                    return false
+                }
+                return t.id !== Number(req.params.id)
+            })
+            db.User.findOneAndUpdate({
+                    _id: user._id
+                }, {
+                    trails
+                },
+                (err, updatedUser) => {
+                    if (err) {
+                        console.log(err);
+                    }
+                    res.json(updatedUser);
+                }
+            );
+        })
 })
+
 
 
 /* GET users listing. */
