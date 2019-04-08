@@ -42,11 +42,11 @@ router.delete('/remove/:id', (req, res) => {
     db.User.findById(res.locals.userData._id)
         .then((user) => {
             let trails = user.trails || [];
-            trails = trails.filter((t) => {
-                if (!t) {
+            trails = trails.filter((trail) => {
+                if (!trail) {
                     return false
                 }
-                return t.id !== Number(req.params.id)
+                return trail.id !== Number(req.params.id)
             })
             db.User.findOneAndUpdate({
                     _id: user._id
@@ -98,4 +98,34 @@ router.get('/geolocation/:city', function (req, res, next) {
 
 });
 
+router.get('/details/:id', function (req, res, next) {
+    let id = req.params.id;
+    // console.log(address)
+    let url = `https://www.hikingproject.com/data/get-trails-by-id?ids=${id}&key=200439239-c0f23da15aa93f591bfc0baf98024eeb`;
+    console.log(url);
+
+    axios.get(url)
+        .then(response => {
+            // console.log(response.data.results[0].geometry.location)
+            console.log("here is the response", response)
+            db.Comment.find({
+                trails_id: id
+            }).populate('userId').exec((err, data) => {
+                if(err){
+                    res.json({"message":"error"})
+                }else{
+                    response.data.comments = data;
+                    res.json(response.data)
+                }
+            })
+            // res.json(response.data)
+
+        })
+        .catch(response => {
+            res.json({
+                "message": "error encounter"
+            })
+        })
+
+});
 module.exports = router;
