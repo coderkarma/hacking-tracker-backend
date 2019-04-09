@@ -31,6 +31,8 @@ router.post('/login', controllers.user.login)
 //   res.send('respond with a resource');
 // });
 
+//  Edit the profile
+
 // 
 router.get('/', controllers.user.index)
 // router.get('/', controllers.user.show)

@@ -100,7 +100,7 @@ router.get('/geolocation/:city', function (req, res, next) {
 
 router.get('/details/:id', function (req, res, next) {
     let id = req.params.id;
-    // console.log(address)
+    
     let url = `https://www.hikingproject.com/data/get-trails-by-id?ids=${id}&key=200439239-c0f23da15aa93f591bfc0baf98024eeb`;
     console.log(url);
 
