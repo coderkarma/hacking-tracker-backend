@@ -52,7 +52,7 @@ module.exports = {
                                     _id: newUser._id,
                                     dateJoined: newUser.dataJoined,
                                     displayname: newUser.displayname,
-                                    // this piece was missing lol
+                                    // this piece was missing goddamn
                                     trails: newUser.trails
                                 }
 
@@ -184,7 +184,8 @@ module.exports = {
     // TODO - recheck this function
     update: (req, res) => {
         let userId = req.params.id;
-
+console.log('xxxxxxxxxxxxxxxxxxxxxx')
+console.log(req.body)
         db.User.findOneAndUpdate({
                 _id: userId
             },
@@ -199,6 +200,8 @@ module.exports = {
             }
         );
     },
+
+
 
     delete: (req, res) => {
 
