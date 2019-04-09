@@ -51,7 +51,9 @@ module.exports = {
                                     email: newUser.email,
                                     _id: newUser._id,
                                     dateJoined: newUser.dataJoined,
-                                    displayname: newUser.displayname
+                                    displayname: newUser.displayname,
+                                    // this piece was missing lol
+                                    trails: newUser.trails
                                 }
 
                                 jwt.sign(
@@ -181,8 +183,6 @@ module.exports = {
     // !! Update the user by id
     // TODO - recheck this function
     update: (req, res) => {
-        // if(res.locals.userData === )
-        // let userId = res.locals.userData._id;
         let userId = req.params.id;
 
         db.User.findOneAndUpdate({
