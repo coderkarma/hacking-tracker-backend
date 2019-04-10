@@ -1,17 +1,20 @@
-// const db = require('../models')
+const express = require('express');
+const router = express.Router();
+const db = require('../models')
 
-//  module.exports = {
-//     comments: (req, res) => {
-//         db.Comment.create({
-//             body: req.body.body,
-//             userId: req.body.user_id,
-//             trailId: req.body.trailId,
-//             dateCreated:req.body.dateCreated
+module.exports = {
+    createComment: (req, res) => {
+        let newComment = {
+            body: req.body.body,
+            userId: req.body.user_id,
+            trailId: req.body.trailId,
+            dateCreated: req.body.dateCreated
 
-//         }, (err, newComment) => {
-//             if(err) return err;
-//             res.json(newComment)
-//         })
-//     }
+        }
+        db.Comment.create(newComment, (err, newCommentCreated) => {
+            if (err) return err;
+            res.json(newCommentCreated)
+        })
+    }
 
-//  }
+}
