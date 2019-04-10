@@ -6,7 +6,7 @@ let CommentSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"
     },
-    trails_id: String,
+    trailId: String,
     DateCreated: String
 });
 

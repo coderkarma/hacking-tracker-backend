@@ -5,6 +5,9 @@ const db = require('../models')
 router.get('/', function (req, res, next) {
   res.send("This is just a Home route")
 });
+// router.get('/comment', function (req, res, next) {
+//   res.json("This is just a comment route")
+// });
 
 // router.get('/users', function (req, res, next) {
 //   db.User.find({}, (err, allUsers) => {

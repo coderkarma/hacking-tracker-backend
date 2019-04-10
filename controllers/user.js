@@ -181,11 +181,9 @@ module.exports = {
     },
 
     // !! Update the user by id
-    // TODO - recheck this function
     update: (req, res) => {
         let userId = req.params.id;
-console.log('xxxxxxxxxxxxxxxxxxxxxx')
-console.log(req.body)
+        console.log(req.body)
         db.User.findOneAndUpdate({
                 _id: userId
             },
