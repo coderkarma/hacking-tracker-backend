@@ -51,6 +51,7 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/trails', trailRouter);
 app.use('/comment', commentRouter);
+// app.use('/comment', commentRouter);
 // app.use('/trails', trailRouter);
 
 app.listen(process.env.PORT || 3001, () =>

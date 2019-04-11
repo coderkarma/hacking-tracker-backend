@@ -100,9 +100,10 @@ router.get('/geolocation/:city', function (req, res, next) {
 
 
 router.get('/comments/:id', function (req, res, next) {
+    
     db.Comment.find({
-        trails_id: req.params.id
-    }).populate('userId').exec((err, data) => {
+        trailId: req.params.id
+    }, (err, data) => {
         if (err) {
             res.json({
                 "message": "error"

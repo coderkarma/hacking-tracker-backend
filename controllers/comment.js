@@ -24,4 +24,22 @@ module.exports = {
             res.json(newComment)
         })
     },
+
+    updateComment: (req, res) => {
+        let userId = req.params.id;
+        console.log(req.body)
+        db.Comment.findOneAndUpdate({
+                _id: userId
+            },
+            req.body, {
+                new: true
+            },
+            (err, updatedComment) => {
+                if (err) {
+                    console.log(err);
+                }
+                res.json(updatedComment);
+            }
+        );
+    },
 }

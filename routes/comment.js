@@ -7,4 +7,5 @@ const db = require('../models')
 
 router.post('/', controllers.comment.createComment);
 router.get('/', controllers.comment.getComment);
+router.put('/', controllers.comment.updateComment);
 module.exports = router;
