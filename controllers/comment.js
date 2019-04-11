@@ -15,6 +15,13 @@ module.exports = {
             if (err) return err;
             res.json(newCommentCreated)
         })
-    }
+    },
 
+    getComment: (req, res) => {
+        console.log("getting all comment")
+        db.Comment.find({}, (err, newComment) => {
+            if (err) return err;
+            res.json(newComment)
+        })
+    },
 }
