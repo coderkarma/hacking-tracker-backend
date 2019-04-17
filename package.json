@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node server.js"
   },
+  "main": "server.js",
   "dependencies": {
     "axios": "^0.18.0",
     "bcrypt": "^3.0.5",
