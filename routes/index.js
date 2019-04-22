@@ -1,9 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models')
+const path = require('path')
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.send("This is just a Home route")
+  console.log('zzzzzzzzzzz');
+  res.sendFile(path.join(__dirname, "../public/build", "index.html"));
 });
 
 

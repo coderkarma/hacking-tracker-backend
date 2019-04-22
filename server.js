@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require("body-parser");
-
+const path = require('path')
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/user');
 const trailRouter = require('./routes/trails');
@@ -10,6 +10,8 @@ const app = express();
 const jwt = require('jsonwebtoken');
 
 app.use(cors())
+// static public folder
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(bodyParser.urlencoded({
   extended: false
@@ -23,9 +25,9 @@ app.use(express.urlencoded({
 
 
 app.use((req, res, next) => {
-  console.log('request header or x token', req.headers['x-token'])
+  // console.log('request header or x token', req.headers['x-token'])
   // check the header of the req
-  console.log('inside the check')
+  // console.log('inside the check')
   if (req.headers['x-token'] === undefined) {
     res.locals.userData = null;
     next();
