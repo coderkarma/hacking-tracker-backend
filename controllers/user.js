@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt'),
 
 module.exports = {
 	signup: (req, res) => {
-		console.log(req.body);
+		// console.log(req.body);
 		// Check to see if email is already in db
 		db.User
 			.find({
@@ -80,7 +80,7 @@ module.exports = {
 				}
 			})
 			.catch(err => {
-				console.log(err);
+				//console.log(err);
 				res.status(500).json({
 					err
 				});
@@ -88,10 +88,10 @@ module.exports = {
 	},
 	login: (req, res) => {
 		// console.log(res.locals.userData);
-		console.log('LOGIN CALLED');
+		//console.log('LOGIN CALLED');
 
 		// find the user in our user db
-		console.log('body', req.body);
+		//console.log('body', req.body);
 		db.User
 			.find({
 				email: req.body.email
