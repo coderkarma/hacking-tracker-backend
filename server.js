@@ -56,6 +56,6 @@ app.use('/comment', commentRouter);
 // app.use('/comment', commentRouter);
 // app.use('/trails', trailRouter);
 
-app.listen(process.env.PORT || 3000, () =>
-  console.log("Listening on port 3000")
+app.listen(process.env.PORT || 8000, () =>
+  console.log("Listening on port 8000")
 );
