@@ -1,7 +1,9 @@
 const mongoose = require("mongoose");
 
+const MONGODB_URI = process.env.MONGODB_URI;
+console.log('mongodb uri', MONGODB_URI);
 mongoose.connect(
-    process.env.MONGODB_URI || "mongodb://localhost/Hiking-Tracker-backEnd", {
+    MONGODB_URI || "mongodb://localhost/Hiking-Tracker-backEnd", {
         useNewUrlParser: true
     }
 );
