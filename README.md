@@ -1,4 +1,4 @@
-# hacking-tracker-backend
+# Hiking-Tracker-backend
 
 # Technologies used
 Node.js, express, mongodb, mongoose
